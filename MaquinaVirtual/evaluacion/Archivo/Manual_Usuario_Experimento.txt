@@ -1,0 +1,87 @@
+Instrucciones para Experimento de Rendimiento en Multiplicación de Matrices
+
+1. Compilación de los archivos fuente
+Para compilar los archivos de código fuente principal.c y biblioteca.c, usa el siguiente comando en la terminal. 
+Esto generará un ejecutable llamado MM_ejecutable.
+
+$gcc *.c -o MM_ejecutable
+
+2. Ejecución del programa
+El programa recibe tres argumentos:
+
+Ejecutable (MM_ejecutable): Nombre del ejecutable
+tamMatriz: Tamaño de la matriz (la matriz será NxN)
+NumHilos: Número de hilos para la ejecución paralela
+Para ejecutar el programa con los argumentos, usa el siguiente comando de ejemplo:
+
+$./MM_ejecutable tamMatriz NumHilos
+
+Ejemplo de ejecución con una matriz de tamaño 100x100 y 4 hilos:
+
+$./MM_ejecutable 100 4
+
+El programa devolverá los tiempos de ejecución del algoritmo de multiplicación de matrices en 
+función del tamaño de matriz y número de hilos.
+
+3. Preparación para la Batería de Experimentación
+Para obtener una medida representativa del tiempo de ejecución, sigue estos pasos:
+
+a. Sistemas de cómputo
+Para este caso se va a utilizar los siguientes sistemas de computo:
+	1. CoCalc
+	2. Terminal Linux
+
+b. Tamaños de matrices (tamMatriz)
+Para el tamaño de las matrices se decidieron los siguientes:
+	1. 800
+	2. 1000
+	3. 1200
+	4. 1400
+	5. 1600
+	6. 1800
+	7. 2000
+	8. 2200
+Justificación: Evaluar el rendimiento en matrices grandes para ver el impacto de tamaño en la eficiencia.
+
+c. Número de hilos (NumHilos)
+Selecciona diferentes valores de hilos como:
+	* 1
+	* 2
+	* 4
+	* 8
+Justificación: Medir cómo el paralelismo afecta el rendimiento. 
+Incluir 1 hilo como referencia para la ejecución en serie.
+
+
+d. Ejecuciones repetidas
+Ejecuta el programa al menos 30 veces para cada combinación de tamMatriz y NumHilos.
+Esto ayudará a obtener un promedio más estable y representativo del tiempo de ejecución.
+
+4. Automatización con lanza.pl
+Para facilitar la ejecución repetida y recolección de datos, usa el archivo lanza.pl para 
+automatizar las pruebas y capturar los datos en archivos .dat. Asegúrate de haber configurado 
+el archivo para capturar los valores necesarios. 
+Modifica el archivo según sea necesario para ajustar los valores de tamMatriz y NumHilos.
+
+Primero toca volver el lanza.pl en un ejecutable con el comando:
+
+$chmod +x lanza.pl
+
+Luego ejecuta el script de automatización con:
+
+$./lanzador.pl
+
+5. Análisis de Datos
+El archivo lanza.pl generará archivos .dat que contienen los tiempos de ejecución para cada combinación 
+de tamaño de matriz y número de hilos. Estos archivos pueden ser importados en una hoja de cálculo 
+para realizar un análisis de rendimiento. Sigue estos pasos para el análisis:
+
+	1. Importar los archivos .dat en una hoja de cálculo (por ejemplo, Excel, Google Sheets, Numbers).
+	2. Calcular el promedio de tiempos de ejecución para cada combinación de tamMatriz y NumHilos.
+	3. Graficar los resultados para visualizar cómo varía el tiempo de ejecución con respecto al 
+	   tamaño de la matriz y el número de hilos.
+
+6. Resultados esperados
+Espera observar una reducción del tiempo de ejecución al incrementar el número de hilos, 
+hasta un punto en el que el rendimiento se estabiliza o incluso disminuye debido al 
+costo de la gestión de hilos y a los límites del hardware.
